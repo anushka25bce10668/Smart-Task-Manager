@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head><link rel="stylesheet" href="/style.css">
+    <title>Smart Task Manager</title>
+</head>
+<body>
+
+    <h1>Smart Task Manager</h1>
+    <p>Manage your daily tasks easily.</p>
+
+    <h2>Add a New Task</h2>
+
+    <form action="/tasks" method="POST">
+
+        <label>Task Title:</label>
+        <input type="text" name="title" placeholder="Enter task title" required>
+
+        <br><br>
+
+        <label>Description:</label>
+        <textarea name="description" placeholder="Enter description"></textarea>
+
+        <br><br>
+
+        <button type="submit">Add Task</button>
+
+    </form>
+
+
+<h2>My Tasks</h2>
+<section class="task-list">
+
+    <% for(let task of tasks) { %>
+
+        <div class="task-card">
+
+            <h3><%= task.title %></h3>
+
+            <p><%= task.description %></p>
+
+            <form action="/tasks/<%= task.id %>/delete" method="POST">
+                <button type="submit" class="delete-btn">
+                    Delete
+                </button>
+            </form>
+
+        </div>
+
+    <% } %>
+
+</section>
+
+<% tasks.forEach((task) => { %>
+
+    <div>
+        <h3><%= task.title %></h3>
+        <p><%= task.description %></p>
+<a href="/tasks/<%= task.id %>/edit">Edit</a>
+        <form action="/tasks/<%= task.id %>/delete" method="POST">
+            <button type="submit">Delete</button>
+            <form action="/tasks/<%= task.id %>/complete" method="POST">
+    <button type="submit">
+        <%= task.completed ? "Mark as Pending" : "Mark as Completed" %>
+    </button>
+</form>
+<p>
+    Status:
+    <%= task.completed ? "Completed" : "Pending" %>
+</p>
+        </form>
+
+    </div>
+
+<% }) %>
+
+<section class="task-list">
+    <h2>Your Tasks</h2>
+
+    <% for(let task of tasks) { %>
+
+        <div class="task-card">
+
+            <h3><%= task.title %></h3>
+
+            <p><%= task.description %></p>
+
+        </div>
+
+    <% } %>
+
+</section>
+</body>
+</html>

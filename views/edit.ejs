@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Task</title>
+
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <h2>Task Manager</h2>
+    </nav>
+
+    <main class="container">
+
+        <section class="add-task">
+
+            <h2>Edit Your Task</h2>
+
+            <form action="/tasks/<%= task.id %>/edit" method="POST">
+
+                <label>Task Title</label>
+
+                <input
+                    type="text"
+                    name="title"
+                    value="<%= task.title %>"
+                    required
+                >
+
+                <label>Description</label>
+
+                <textarea
+                    name="description"
+                    required
+                ><%= task.description %></textarea>
+
+                <button type="submit">
+                    Update Task
+                </button>
+
+            </form>
+
+            <br>
+
+            <a href="/">Go Back</a>
+
+        </section>
+
+    </main>
+
+</body>
+</html>
